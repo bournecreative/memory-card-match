@@ -1,14 +1,15 @@
 .card{
     display: inline-block;
     position: relative;
-    width: 12vw;
+    width: 7vw;
     background-color: grey;
+    margin: 0 .5%;
 }
 
 .card:before{
     content: "";
     display: block;
-    padding-top: 175%;
+    padding-top: 160%;
 }
 
 .front{

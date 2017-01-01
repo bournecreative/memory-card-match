@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  buildCards();
   cardClickHandler();
 });
 
@@ -22,4 +23,16 @@ function reveal(card_instance){
     $(card_instance).bind("click",showCard);
     console.log("face card is now hidden again");
   },3000);
+}
+
+function buildCards() {
+  
+  for (var i=0; i<=18; i++) {
+    var cardContainer = $('<div>', {class: 'card'});
+    var cardFront = $('<div>',{class: 'front'});
+    var cardBack = $('<div>',{class: 'back'});
+    $("body").append(cardContainer);
+    $(cardContainer).append(cardFront);
+    $(cardContainer).append(cardBack);
+  }
 }
