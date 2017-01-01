@@ -27,12 +27,21 @@ function reveal(card_instance){
 
 function buildCards() {
   
-  for (var i=0; i<=18; i++) {
-    var cardContainer = $('<div>', {class: 'card'});
-    var cardFront = $('<div>',{class: 'front'});
-    var cardBack = $('<div>',{class: 'back'});
-    $("body").append(cardContainer);
-    $(cardContainer).append(cardFront);
-    $(cardContainer).append(cardBack);
-  }
+    for (var i=0; i<=9; i++) {
+      var cardContainer = $('<div>', {class: 'card'});
+      var cardFront = $('<div>',{class: 'front', text: i});
+      var cardBack = $('<div>',{class: 'back'});
+      $("body").append(cardContainer);
+      $(cardContainer).append(cardFront);
+      $(cardContainer).append(cardBack);
+    }
+  
+    for (var i=9; i>=0; i--) {
+      var cardContainer = $('<div>', {class: 'card'});
+      var cardFront = $('<div>', {class: 'front', text: i});
+      var cardBack = $('<div>', {class: 'back'});
+      $("body").append(cardContainer);
+      $(cardContainer).append(cardFront);
+      $(cardContainer).append(cardBack);
+    }
 }
