@@ -3,6 +3,9 @@ $(document).ready(function(){
   cardClickHandler();
 });
 
+var firstCard = null;
+var secondCard = null;
+
 //Click handler to hide card back and reveal card face
 function cardClickHandler(){
   $('.back').click(showCard);
@@ -26,22 +29,39 @@ function reveal(card_instance){
 }
 
 function buildCards() {
+    
+  var cardNumbers = [0,1,2,3,4,5,6,7,8,0,1,2,3,4,5,6,7,8];
   
-    for (var i=0; i<=9; i++) {
+  var newCardOrder = shuffle(cardNumbers);
+  
+    for (var i=0; i<=newCardOrder.length-1; i++) {
       var cardContainer = $('<div>', {class: 'card'});
-      var cardFront = $('<div>',{class: 'front', text: i});
+      var cardFront = $('<div>',{class: 'front', text: newCardOrder[i]});
       var cardBack = $('<div>',{class: 'back'});
       $("body").append(cardContainer);
       $(cardContainer).append(cardFront);
       $(cardContainer).append(cardBack);
     }
-  
-    for (var i=9; i>=0; i--) {
-      var cardContainer = $('<div>', {class: 'card'});
-      var cardFront = $('<div>', {class: 'front', text: i});
-      var cardBack = $('<div>', {class: 'back'});
-      $("body").append(cardContainer);
-      $(cardContainer).append(cardFront);
-      $(cardContainer).append(cardBack);
-    }
 }
+
+function shuffle(array) {
+  var m = array.length, t, i;
+  
+  // While there remain elements to shuffle…
+  while (m) {
+    
+    // Pick a remaining element…
+    i = Math.floor(Math.random() * m--);
+    
+    // And swap it with the current element.
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
+  }
+  return array;
+}
+
+/*
+***** Game Logic *****
+*/
+
