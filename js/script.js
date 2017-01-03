@@ -23,7 +23,7 @@ function buildCards() {
     var cardContainer = $('<div>', {class: 'card'});
     var cardFront = $('<div>',{class: 'front', text: newCardOrder[i]});
     var cardBack = $('<div>',{class: 'back'});
-    $("body").append(cardContainer);
+    $("#gameBoard").append(cardContainer);
     $(cardContainer).append(cardFront);
     $(cardContainer).append(cardBack);
   }
