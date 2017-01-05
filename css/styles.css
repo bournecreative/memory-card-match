@@ -1,41 +1,195 @@
+/*mute grey   #34435f;*/
+/*dark blue   #0f2774*/
+/*light blue  #1847e0*/
+/*sky blue    #bd0ef*/
+
+
 /********************
 *  Global
 ********************/
 body, html{
     margin: 0;
+    height: 100%;
+    font-family: 'Bowlby One SC', cursive;
 }
 
 /********************
 *  Game Layout
 ********************/
-header{
-    background-color: #1d1f21;
-    width: 100%;
-    height: 15vh;
-    margin-bottom: 5vh;
+
+html{
+    background: #1847e0; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(90deg, #0f2774,#1847e0,#000000); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(90deg, #0f2774,#1847e0,#000000); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(90deg, #0f2774,#1847e0,#000000); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(90deg, #0f2774,#1847e0,#000000); /* Standard syntax */
 }
 
-#gameStats{
-    width: 20%;
-    height: 40vh;
-    float: left;
-    margin: 0 0 0 1%;
-    background-color: #1A1A1A;
+body{
+    background-image: url("../img/grid-patterns.png");
+}
 
+/********************
+*  Header / Navigation
+********************/
+
+header{
+    width: 100%;
+    height: 15vh;
+    background-color: #000000;
+    margin-bottom: 1%;
+    background-image: url("../img/helicopter_schematic.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+}
+
+.headerTitle{
+    text-align: center;
+}
+
+header h1{
+    color: #34435f;
+    margin: 0;
+    font-size: 7vh;
+}
+
+header ul{
+    margin: 0;
+    padding: 0;
+}
+
+header li{
+    display: inline-block;
+    list-style: none;
+    margin: 0;
+    padding: 0 2%;
+    font-size: 3vh;
+    color: #34435f;
+    font-family: 'Passion One', cursive;
+}
+
+header li:hover{
+    color: #9bd0ef;
+}
+
+/********************
+*  Game Stats
+********************/
+
+#gameStats{
+    float: left;
+    width: 20%;
+    margin: 0 0 0 5%;
+    background-color: rgba(52,67,95,0.4);
+    border: #9bd0ef 2px solid;
+    box-sizing: border-box;
+    background-image: url("../img/helicopter_schematic.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*background-image: url("../img/grid-patterns.png");*/
+    /*background-repeat: repeat;*/
+    font-family: 'Passion One', cursive;
+    font-weight: 100;
+}
+
+.statsTitle{
+    width: 100%;
+    background-color: #9bd0ef;
+}
+
+.statsTitle h2{
+    text-align: center;
+    margin: 0;
+    padding: 1% 0;
+    color: #0f2774;
+    font-size: 5vh;
+}
+
+#gameStats ul{
+    margin: 5% auto;
+    padding: 0;
+    border-bottom: solid #9bd0ef 2px;
+    width: 90%;
+}
+
+#gameStats li{
+    font-size: 1.5vw;
+    color: #ffffff;
+    list-style: none;
+    padding: 7%;
+    font-family: 'Passion One', cursive;
+}
+
+.reset{
+    display: block;
+    text-align: center;
+    background-color: #9bd0ef;
+    color: #0f2774;
+    width: 40%;
+    padding: 2%;
+    border: none;
+    font-size: 1.2em;
+    margin: 0 auto;
+    margin-bottom: 10%;
+    font-family: 'Passion One', cursive;
+}
+
+.reset:hover{
+    background-color: #0f2774;
+    color: #ffffff;
+}
+
+/********************
+*  Game Board
+********************/
+#gameContainer{
+    float: left;
+    width: 50%;
+    border: #9bd0ef 2px solid;
+    box-sizing: border-box;
+    background-color: rgba(52,67,95,0.4);
+    margin: 0 5%;
+    /*background-image: url("../img/grid-patterns.png");*/
+    /*background-repeat: repeat;*/
+}
+
+.gameContainerTitle{
+    width: 100%;
+    height: 7vh;
+    line-height: 7vh;
+    background-color: #9bd0ef;
+    margin-bottom: 2%;
+}
+
+.gameContainerTitle h2{
+    text-align: center;
+    margin: 0;
+    color: #0f2774;
+    font-size: 4vh;
 }
 
 #gameBoard{
-    width: 50%;
-    margin: 0 auto;
+    width: 100%;
+    text-align: center;
 }
+
 /********************
-*  Card Styles
+*  Game Cards
 ********************/
 .card{
     display: inline-block;
     position: relative;
-    width: 7vw;
+    width: 15%;
     margin: 0 .5%;
+    transition: all .2s ease-in-out;
+}
+
+.card:hover{
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari */
+    transform: scale(1.1);
+    z-index: 10;
 }
 
 .card:before{
@@ -62,3 +216,37 @@ header{
     width: 100%;
     height: 100%;
 }
+
+/********************
+*  Music Volume
+********************/
+#music{
+    position: fixed;
+    top: 4vh;
+    right: 2vw;
+    width: 3vw;
+    height: 3vw;
+    border-radius: 50%;
+}
+
+#music:hover{
+    background-color: #9bd0ef;
+}
+
+.music_off{
+    width: 100%;
+    height: 100%;
+    background: url("../img/music-off.png") no-repeat;
+    background-size: contain;
+}
+
+.music_on{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../img/music-on.png") no-repeat;
+    background-size: contain;
+}
+

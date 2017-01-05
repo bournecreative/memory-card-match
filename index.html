@@ -4,14 +4,52 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="css/styles.css"/>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Bowlby+One+SC|Passion+One" rel="stylesheet">
+  <script src="js/ion.sound.min.js"></script>
   <script type="text/javascript" src="js/script.js"></script>
   <title></title>
 </head>
 <body>
+<!------------------
+* Game Navigation *
+-------------------->
 <header>
-
+  <div class="headerTitle">
+    <h1>Espionage</h1>
+    <ul>
+      <li>About</li>
+      <li>How to Play</li>
+    </ul>
+  </div>
+  <div id="music">
+    <div class="music_on"></div>
+    <div class="music_off"></div>
+  </div>
 </header>
-<div id="gameStats"></div>
-<div id="gameBoard"></div>
+<!------------------
+* Game Stats *
+-------------------->
+<div id="gameStats">
+  <div class="statsTitle">
+    <h2>GAME STATS</h2>
+  </div>
+  <ul>
+    <li>Games Played: </li>
+    <li>Accuracy:</li>
+    <li>Attempts:</li>
+    <li>Matches: </li>
+  </ul>
+  <button class="reset">RESET GAME</button>
+</div>
+<!------------------
+* Game Cards Area *
+-------------------->
+<div id="gameContainer">
+  <div class="gameContainerTitle">
+    <h2> Select Target Card </h2>
+  </div>
+    <div id="gameBoard">
+    </div>
+</div>
 </body>
 </html>

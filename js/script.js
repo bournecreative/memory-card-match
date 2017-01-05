@@ -1,12 +1,53 @@
 $(document).ready(function(){
   buildCards();
   cardClickHandler();
+  pauseMusicHandler();
+  musicToggleHandler();
 });
 
 var firstCard = null;
 var firstCardVal = null;
 var secondCard = null;
 var secondCardVal = null;
+
+/**********************
+ * Music for Game Play
+ **********************/
+ion.sound({
+  sounds: [
+    {
+      name: "archer-killer-theme-song"
+    }
+  ],
+  volume: 0.5,
+  path: "sounds/",
+  preload: true,
+  loop:true
+});
+
+
+// Simple
+ion.sound.play("archer-killer-theme-song");
+
+function pauseMusicHandler(){
+  $('#music').on('click',pauseGameMusic);
+}
+
+function pauseGameMusic(){
+  ion.sound.pause("archer-killer-theme-song");
+}
+
+
+/**********************
+ * Music Volume
+ **********************/
+function musicToggleHandler(){
+  $('#music').on('click',musicToogle);
+}
+
+function musicToogle(){
+  $('.music_on').fadeToggle(700);
+}
 
 /**********************
 * Sets Game Board
@@ -47,7 +88,6 @@ function shuffle(arr) {
 //Click handler to hide card back and reveal card face
 function cardClickHandler(){
   $('.back').click(showCard);
-  console.log("initially called on DOM load");
 }
 
 //hides card back and unbinds click from '.card'
