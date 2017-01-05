@@ -1,8 +1,7 @@
 /*mute grey   #34435f;*/
 /*dark blue   #0f2774*/
 /*light blue  #1847e0*/
-/*sky blue    #bd0ef*/
-
+/*sky blue    #9bd0ef*/
 
 /********************
 *  Global
@@ -38,10 +37,11 @@ header{
     height: 15vh;
     background-color: #000000;
     margin-bottom: 1%;
-    background-image: url("../img/helicopter_schematic.png");
+    background-image: url("../img/lunar-schematic.png");
     background-repeat: no-repeat;
-    background-size: cover;
-    background-position: right;
+    background-size: 100%;
+    background-position: top right;
+;
 }
 
 .headerTitle{
@@ -49,7 +49,7 @@ header{
 }
 
 header h1{
-    color: #34435f;
+    color: #9bd0ef;
     margin: 0;
     font-size: 7vh;
 }
@@ -65,12 +65,46 @@ header li{
     margin: 0;
     padding: 0 2%;
     font-size: 3vh;
-    color: #34435f;
+    color: #9bd0ef;
     font-family: 'Passion One', cursive;
 }
 
 header li:hover{
-    color: #9bd0ef;
+    color: #34435f;
+}
+
+/********************
+*  Music Volume
+********************/
+#music{
+    position: fixed;
+    top: 4vh;
+    right: 2vw;
+    width: 3vw;
+    height: 3vw;
+    border-radius: 50%;
+    background-color: #9bd0ef;
+}
+
+#music:hover{
+    background-color: #1847e0;
+}
+
+.music_off{
+    width: 100%;
+    height: 100%;
+    background: url("../img/music-off.png") no-repeat;
+    background-size: contain;
+}
+
+.music_on{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../img/music-on.png") no-repeat;
+    background-size: contain;
 }
 
 /********************
@@ -80,7 +114,7 @@ header li:hover{
 #gameStats{
     float: left;
     width: 20%;
-    margin: 0 0 0 5%;
+    margin: 5% 0 0 3%;
     background-color: rgba(52,67,95,0.4);
     border: #9bd0ef 2px solid;
     box-sizing: border-box;
@@ -149,7 +183,7 @@ header li:hover{
     border: #9bd0ef 2px solid;
     box-sizing: border-box;
     background-color: rgba(52,67,95,0.4);
-    margin: 0 5%;
+    margin: 0 2%;
     /*background-image: url("../img/grid-patterns.png");*/
     /*background-repeat: repeat;*/
 }
@@ -159,7 +193,7 @@ header li:hover{
     height: 7vh;
     line-height: 7vh;
     background-color: #9bd0ef;
-    margin-bottom: 2%;
+    margin-bottom: 1%;
 }
 
 .gameContainerTitle h2{
@@ -218,35 +252,21 @@ header li:hover{
 }
 
 /********************
-*  Music Volume
+*  Game Stats
 ********************/
-#music{
-    position: fixed;
-    top: 4vh;
-    right: 2vw;
-    width: 3vw;
-    height: 3vw;
-    border-radius: 50%;
+#gameIntel{
+    float: left;
+    width: 20%;
+    height: 40vh;
+    margin: 5% 0 0 0;
+    background-color: rgba(52,67,95,0.4);
+    border: #9bd0ef 2px solid;
+    box-sizing: border-box;
+    background-image: url("../img/lunar-schematic.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*background-image: url("../img/grid-patterns.png");*/
+    /*background-repeat: repeat;*/
+    font-family: 'Passion One', cursive;
+    font-weight: 100;
 }
-
-#music:hover{
-    background-color: #9bd0ef;
-}
-
-.music_off{
-    width: 100%;
-    height: 100%;
-    background: url("../img/music-off.png") no-repeat;
-    background-size: contain;
-}
-
-.music_on{
-    position: absolute;
-    top:0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url("../img/music-on.png") no-repeat;
-    background-size: contain;
-}
-
