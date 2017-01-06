@@ -150,3 +150,8 @@ function resetCardGuess(){
 /**********************
  * Point Logic Logic
  **********************/
+
+function gamesPlayed(){
+  var i = 0;
+  return $('.accuracy').text(i);
+}
