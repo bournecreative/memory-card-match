@@ -1,4 +1,4 @@
-/*mute grey   #34435f;*/
+/*mute grey   #34435f*/
 /*dark blue   #0f2774*/
 /*light blue  #1847e0*/
 /*sky blue    #9bd0ef*/
@@ -35,7 +35,9 @@ body{
 header{
     width: 100%;
     height: 15vh;
-    background-color: #000000;
+    /*dark blue   #0f2774*/
+    /*background-color: #0f2774;*/
+    background-color: #0e1b51;
     margin-bottom: 1%;
     background-image: url("../img/lunar-schematic.png");
     background-repeat: no-repeat;
@@ -64,15 +66,25 @@ header li{
     list-style: none;
     margin: 0;
     padding: 0 2%;
+}
+
+header li a{
     font-size: 3vh;
     color: #9bd0ef;
     font-family: 'Passion One', cursive;
 }
 
-header li:hover{
+header li a:hover{
     color: #34435f;
 }
 
+.howToPlay{
+    text-decoration: none;
+}
+.howToPlay:visited, .about:active
+{
+    color: #9bd0ef;
+}
 /********************
 *  Music Volume
 ********************/
@@ -148,7 +160,7 @@ header li:hover{
 }
 
 #gameStats li{
-    font-size: 1.5vw;
+    font-size: 1.8vw;
     color: #ffffff;
     list-style: none;
     padding: 7%;
@@ -160,10 +172,10 @@ header li:hover{
     text-align: center;
     background-color: #9bd0ef;
     color: #0f2774;
-    width: 40%;
+    width: 50%;
     padding: 2%;
     border: none;
-    font-size: 1.2em;
+    font-size: 1.5vw;
     margin: 0 auto;
     margin-bottom: 10%;
     font-family: 'Passion One', cursive;
@@ -223,7 +235,7 @@ header li:hover{
     -ms-transform: scale(1.1); /* IE 9 */
     -webkit-transform: scale(1.1); /* Safari */
     transform: scale(1.1);
-    z-index: 10;
+    z-index: 2;
 }
 
 .card:before{
@@ -269,4 +281,56 @@ header li:hover{
     /*background-repeat: repeat;*/
     font-family: 'Passion One', cursive;
     font-weight: 100;
+}
+
+/********************
+*  Light Box
+********************/
+.gameModule{
+    display: none;
+    position: fixed;
+    z-index:3;
+    width: 50%;
+    height: 50%;
+    top: 10%;
+    margin-left: 25%;
+    background-color: rgba(0,0,0,0.9);
+}
+
+.modelBorder{
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    margin-left: 5%;
+    top:5%;
+    box-sizing: content-box;
+    border: #9bd0ef 2px solid;
+}
+
+.gameContent{
+    position: relative;
+    width: 100%;
+    color: #ffffff;
+}
+
+.closeBtn{
+    position: absolute;
+    top: 1%;
+    right:2%;
+    font-size: 2vw;
+    cursor: pointer;
+}
+
+.gameContent h3{
+    margin: 0;
+    text-align: center;
+    font-size: 2vw;
+    color: #0f2774;
+}
+
+.gameContent p{
+    margin: 0;
+    font-size: 1.2vw;
+    line-height: 2vw;
+    padding: 0 5%;
 }

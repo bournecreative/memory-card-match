@@ -3,6 +3,10 @@ $(document).ready(function(){
   cardClickHandler();
   pauseMusicHandler();
   musicToggleHandler();
+  gamesPlayed();
+  gameResetHandler();
+  moduleHandler();
+  closeHandler();
 });
 
 var firstCard = null;
@@ -136,7 +140,7 @@ function reveal(){
     $(firstCard).bind("click",showCard);
     $(secondCard).bind("click",showCard);
     $('.back').on('click',showCard);
-  },3000);
+  },2000);
 }
 
 //reset cards identified for match
@@ -153,5 +157,39 @@ function resetCardGuess(){
 
 function gamesPlayed(){
   var i = 0;
-  return $('.accuracy').text(i);
+  return $('.acc_score').text(" " +i);
+}
+
+/**********************
+ * Reset Game Logic
+ **********************/
+
+function gameResetHandler(){
+  $('.reset').on('click', gameReset);
+}
+
+function gameReset(){
+  $('.back').show();
+  resetCardGuess();//Resets Card Values
+  //increments games played
+  //clears accuracy, attempts, and matches
+}
+
+/**********************
+ * Reset Game Logic
+ **********************/
+function moduleHandler(){
+  $('.howToPlay').click(openModule);
+}
+
+function openModule() {
+  $('.gameModule').fadeIn();
+}
+
+function closeHandler(){
+  $('.closeBtn').click(closeModel);
+}
+
+function closeModel(){
+  $('.gameModule').fadeOut();
 }
