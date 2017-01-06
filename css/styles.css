@@ -166,6 +166,10 @@ header li a:hover{
     padding: 7%;
     font-family: 'Passion One', cursive;
 }
+#gameStats li span {
+    color: #9bd0ef;
+    font-size: 2vw;
+}
 
 .reset{
     display: block;
@@ -205,7 +209,6 @@ header li a:hover{
     height: 7vh;
     line-height: 7vh;
     background-color: #9bd0ef;
-    margin-bottom: 1%;
 }
 
 .gameContainerTitle h2{
@@ -216,8 +219,36 @@ header li a:hover{
 }
 
 #gameBoard{
+    position: relative;
     width: 100%;
     text-align: center;
+    padding: 2% 0;
+}
+
+/********************
+*  Game Shield
+********************/
+#gameShield {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    z-index: 3;
+}
+
+#gameShield a{
+    position: relative;
+    top: 40%;
+    font-size: 3vw;
+    text-decoration: none;
+    color: #ffffff;
+
+}
+
+#gameShield a:visited{
+    color: #ffffff;
 }
 
 /********************
@@ -289,9 +320,9 @@ header li a:hover{
 .gameModule{
     display: none;
     position: fixed;
-    z-index:3;
+    z-index:4;
     width: 50%;
-    height: 50vh;
+    height: 30vw;
     top: 10%;
     margin-left: 25%;
     background-color: rgba(0,0,0,0.9);
@@ -326,10 +357,11 @@ header li a:hover{
     margin: 0;
     text-align: center;
     font-size: 2vw;
-    color: #0f2774;
+    color: #f5c600;
 }
 
 .gameContent p{
+    color: #0c84e8;
     margin: 0;
     font-size: 1.2vw;
     line-height: 2vw;
@@ -337,6 +369,7 @@ header li a:hover{
 }
 
 .gameContent li{
+    color: #ffffff;
     font-size: 1.2vw;
     line-height: 2vw;
 }

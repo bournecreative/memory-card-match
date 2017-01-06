@@ -33,10 +33,10 @@
     <h2>GAME STATS</h2>
   </div>
   <ul>
-    <li>Games Played: </li>
-    <li>Accuracy:<span class="acc_score"></span></li>
-    <li>Attempts:</li>
-    <li>Matches: </li>
+    <li>Games Played:<span class="gamesPlayed"></span> </li>
+    <li>Accuracy:<span class="acc"></span></li>
+    <li>Attempts:<span class="attempt"></span></li>
+    <li>Matches:<span class="match"></span></li>
   </ul>
   <button class="reset">RESET GAME</button>
 </div>
@@ -48,6 +48,9 @@
     <h2> Select Target Card </h2>
   </div>
     <div id="gameBoard">
+      <div id="gameShield">
+        <a class="startGame" href="javascript:void(0)">Start Game</a>
+      </div>
     </div>
 </div>
 <!------------------
@@ -67,9 +70,10 @@
         <ul>
           <li>There are 18 cards with 9 matching pairs, randomly assorted.</li>
           <li>Each card shields an covert agent's identity.</li>
-          <li>Player can flip 2 cards per attempt. </li>
+          <li>Player can flip 2 cards per attempt.</li>
+          <li>Match all 9 agents to WIN!</li>
         </ul>
-      <p>Match all 9 agents to WIN! Good luck.</p>
+      <p>Good luck field agent.</p>
     </div>
   </div>
 </div>

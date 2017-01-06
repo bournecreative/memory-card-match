@@ -7,12 +7,19 @@ $(document).ready(function(){
   gameResetHandler();
   moduleHandler();
   closeHandler();
+  startGameHandler();
+  incrementAttempt();
+  guessAccuracy();
+  agentMatched();
 });
 
 var firstCard = null;
 var firstCardVal = null;
 var secondCard = null;
 var secondCardVal = null;
+var totalGamesPlayed = null;
+var totalAttempts = null;
+var matches = null;
 
 /**********************
  * Music for Game Play
@@ -115,11 +122,14 @@ function markCard(card) {
     console.log("2nd Card Val " + secondCardVal);
     $('.back').off('click',showCard);
     checkForMatch();
+    incrementAttempt();
+    guessAccuracy();
   }
 }
 
 function checkForMatch(){
   if (firstCardVal === secondCardVal){
+    agentMatched();
     console.log("its a match - Point");
     resetCardGuess();
     $('.back').on('click',showCard);
@@ -140,7 +150,7 @@ function reveal(){
     $(firstCard).bind("click",showCard);
     $(secondCard).bind("click",showCard);
     $('.back').on('click',showCard);
-  },2000);
+  },1700);
 }
 
 //reset cards identified for match
@@ -152,12 +162,66 @@ function resetCardGuess(){
 }
 
 /**********************
- * Point Logic Logic
+ * Module Show / Hide Functionality
  **********************/
 
+function startGameHandler(){
+  $('.startGame').on('click', startGame)
+}
+
+function startGame(){
+  $('#gameShield').fadeOut();
+  gamesPlayed();
+}
+
+/**********************
+ * Games Played Logic
+ **********************/
 function gamesPlayed(){
-  var i = 0;
-  return $('.acc_score').text(" " +i);
+  if (totalGamesPlayed === null){
+    totalGamesPlayed = 0;
+    $('.gamesPlayed').text(" " + totalGamesPlayed);
+  }else{
+    totalGamesPlayed = totalGamesPlayed + 1;
+    $('.gamesPlayed').text(" " + totalGamesPlayed);
+  }
+}
+
+/**********************
+ * Attempt Made
+ **********************/
+function incrementAttempt(){
+  if (totalAttempts === null){
+    totalAttempts = 0;
+    $('.attempt').text(" " + totalAttempts)
+  }else{
+    totalAttempts++;
+    $('.attempt').text(" " + totalAttempts);
+  }
+}
+
+/**********************
+ * Match Made
+ **********************/
+function agentMatched(){
+  if (matches === null) {
+    matches = 0;
+    $('.match').text(" " + matches);
+  }else{
+    matches = matches +1;
+    $('.match').text(" " + matches);
+  }
+}
+
+/**********************
+ * Accuracy
+ **********************/
+function guessAccuracy(){
+  if (totalAttempts === 0){
+    $('.acc').text(" " + 0);
+  }else{
+    $('.acc').text(" " + (matches/totalAttempts).toFixed(2)+"%");
+  }
 }
 
 /**********************
@@ -171,12 +235,17 @@ function gameResetHandler(){
 function gameReset(){
   $('.back').show();
   resetCardGuess();//Resets Card Values
-  //increments games played
+  totalAttempts = null;
+  matches = null;
+  incrementAttempt();
+  agentMatched();
+  guessAccuracy();
   //clears accuracy, attempts, and matches
+  $('#gameShield').fadeIn();
 }
 
 /**********************
- * Reset Game Logic
+ * Module Show / Hide Functionality
  **********************/
 function moduleHandler(){
   $('.howToPlay').click(openModule);
@@ -187,9 +256,10 @@ function openModule() {
 }
 
 function closeHandler(){
-  $('.closeBtn').click(closeModel);
+  $('.closeBtn').on('click',closeModel);
 }
 
 function closeModel(){
   $('.gameModule').fadeOut();
 }
+
