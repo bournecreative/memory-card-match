@@ -291,7 +291,7 @@ header li a:hover{
     position: fixed;
     z-index:3;
     width: 50%;
-    height: 50%;
+    height: 50vh;
     top: 10%;
     margin-left: 25%;
     background-color: rgba(0,0,0,0.9);
@@ -305,6 +305,7 @@ header li a:hover{
     top:5%;
     box-sizing: content-box;
     border: #9bd0ef 2px solid;
+    overflow: hidden;
 }
 
 .gameContent{
@@ -333,4 +334,9 @@ header li a:hover{
     font-size: 1.2vw;
     line-height: 2vw;
     padding: 0 5%;
+}
+
+.gameContent li{
+    font-size: 1.2vw;
+    line-height: 2vw;
 }
