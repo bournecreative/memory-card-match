@@ -27,17 +27,19 @@ var matches = null;
 ion.sound({
   sounds: [
     {
-      name: "archer-killer-theme-song"
+      name: "archer-killer-theme-song",
+      volume: 0.5,
+      loop:true
+    },
+    {
+      name: "gameWin",
+      volume: 1.0
     }
   ],
-  volume: 0.5,
   path: "sounds/",
-  preload: true,
-  loop:true
+  preload: true
 });
 
-
-// Simple
 ion.sound.play("archer-killer-theme-song");
 
 function pauseMusicHandler(){
@@ -48,6 +50,9 @@ function pauseGameMusic(){
   ion.sound.pause("archer-killer-theme-song");
 }
 
+function winning(){
+  ion.sound.play("gameWin");
+}
 
 /**********************
  * Music Volume
@@ -74,7 +79,7 @@ function buildCards() {
   for (var i=0; i<=newCardOrder.length-1; i++) {
     var cardContainer = $('<div>', {class: 'card'});
     var cardFront = $('<div>',{class: 'front'});
-    var cardImg = $('<img>').attr('src', '../img/card'+newCardOrder[i]+'.jpg');
+    var cardImg = $('<img>').attr('src', 'img/card'+newCardOrder[i]+'.jpg');
     var cardBack = $('<div>',{class: 'back'});
     $("#gameBoard").append(cardContainer);
     $(cardContainer).append(cardFront);
@@ -116,11 +121,11 @@ function showCard () {
 function markCard(card) {
   if (firstCard === null) {
     firstCard = $(card);
-    firstCardVal = $(card).prev('.front').text();
+    firstCardVal = $(card).prev('.front').find('img').attr('src');
     console.log("1st Card Val " + firstCardVal);
   }else if(firstCard !== null && secondCard === null){
     secondCard = $(card);
-    secondCardVal = $(card).prev('.front').text();
+    secondCardVal = $(card).prev('.front').find('img').attr('src');
     console.log("2nd Card Val " + secondCardVal);
     $('.back').off('click',showCard);
     checkForMatch();
@@ -212,6 +217,7 @@ function agentMatched(){
   }else{
     matches = matches +1;
     $('.match').text(" " + matches);
+    determineWin();
   }
 }
 
@@ -235,15 +241,52 @@ function gameResetHandler(){
 }
 
 function gameReset(){
+  //Hides all cards
   $('.back').show();
-  resetCardGuess();//Resets Card Values
+  //Resets Card Values
+  resetCardGuess();
+  //clear values for game states
   totalAttempts = null;
   matches = null;
+  //running game display stats to show text of zeroed out stat
   incrementAttempt();
   agentMatched();
   guessAccuracy();
-  //clears accuracy, attempts, and matches
+  //clears win message if visible
+  $('.gameMessage').css('display', 'none');
+  //start screen
   $('#gameShield').fadeIn();
+}
+
+/**********************
+ * Determine Win
+ **********************/
+
+function determineWin(){
+  if (matches >=9){
+    winning();
+    winMessage();
+  }
+}
+
+/**********************
+ * Display Winning Message
+ **********************/
+function winMessage(){
+  $('.gameMessage').css('display', 'block');
+  clearHandler();
+}
+
+/**********************
+ * Clear Game Message
+ **********************/
+
+function clearHandler(){
+  $('.gameMessage').on('click',clearGameMessage);
+}
+
+function clearGameMessage(){
+  gameReset();
 }
 
 /**********************

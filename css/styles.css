@@ -183,6 +183,7 @@ header li a:hover{
     margin: 0 auto;
     margin-bottom: 10%;
     font-family: 'Passion One', cursive;
+    cursor: pointer;
 }
 
 .reset:hover{
@@ -235,7 +236,7 @@ header li a:hover{
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0.9);
-    z-index: 3;
+    z-index: 2;
 }
 
 #gameShield a{
@@ -244,11 +245,31 @@ header li a:hover{
     font-size: 3vw;
     text-decoration: none;
     color: #ffffff;
-
+    z-index: 3;
 }
 
 #gameShield a:visited{
     color: #ffffff;
+}
+
+/********************
+*  Game Message
+********************/
+.gameMessage{
+    display: none;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 40%;
+    font-size: 3vw;
+    text-decoration: none;
+    color: #f5c600;
+    background-color: rgba(0,0,0,0.9);
+    z-index: 4;
+}
+
+.gameMessage:visited{
+    color: #f5c600;
 }
 
 /********************
@@ -266,7 +287,7 @@ header li a:hover{
     -ms-transform: scale(1.1); /* IE 9 */
     -webkit-transform: scale(1.1); /* Safari */
     transform: scale(1.1);
-    z-index: 2;
+    z-index: 1;
 }
 
 .card:before{
@@ -327,7 +348,7 @@ header li a:hover{
 .gameModule{
     display: none;
     position: fixed;
-    z-index:4;
+    z-index:5;
     width: 50%;
     height: 30vw;
     top: 10%;
