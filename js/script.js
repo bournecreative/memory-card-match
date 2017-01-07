@@ -73,10 +73,12 @@ function buildCards() {
   
   for (var i=0; i<=newCardOrder.length-1; i++) {
     var cardContainer = $('<div>', {class: 'card'});
-    var cardFront = $('<div>',{class: 'front', text: newCardOrder[i]});
+    var cardFront = $('<div>',{class: 'front'});
+    var cardImg = $('<img>').attr('src', '../img/card'+newCardOrder[i]+'.jpg');
     var cardBack = $('<div>',{class: 'back'});
     $("#gameBoard").append(cardContainer);
     $(cardContainer).append(cardFront);
+    $(cardFront).append(cardImg);
     $(cardContainer).append(cardBack);
   }
 }

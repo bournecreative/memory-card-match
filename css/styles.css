@@ -279,7 +279,14 @@ header li a:hover{
     position: absolute;
     top: 0;
     left: 0;
-    background-color: red;
+    width: 100%;
+    height: 100%;
+}
+
+.front img{
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
 }
