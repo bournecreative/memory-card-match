@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width" />
   <link rel="stylesheet" type="text/css" href="css/styles.css"/>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Bowlby+One+SC|Passion+One" rel="stylesheet">
@@ -26,19 +27,12 @@
   </div>
 </header>
 <!------------------
-* Game Stats *
+* Game Intel *
 -------------------->
-<div id="gameStats">
+<div id="gameIntel">
   <div class="statsTitle">
-    <h2>GAME STATS</h2>
+    <h2>TARGET INTEL</h2>
   </div>
-  <ul>
-    <li>Games Played:<span class="gamesPlayed"></span> </li>
-    <li>Accuracy:<span class="acc"></span></li>
-    <li>Attempts:<span class="attempt"></span></li>
-    <li>Matches:<span class="match"></span></li>
-  </ul>
-  <button class="reset">RESET GAME</button>
 </div>
 <!------------------
 * Game Cards Area *
@@ -54,14 +48,25 @@
         <a class="gameMessage" href="javascript:void(0)">You WIN!!! Play Again?</a>
     </div>
 </div>
+
 <!------------------
-* Game Intel *
+* Game Stats *
 -------------------->
-<div id="gameIntel">
+<div id="gameStats">
   <div class="statsTitle">
-    <h2>TARGET INTEL</h2>
+    <h2>GAME STATS</h2>
   </div>
+  <ul>
+    <li>Games Played:<span class="gamesPlayed"></span> </li>
+    <li>Accuracy:<span class="acc"></span></li>
+    <li>Attempts:<span class="attempt"></span></li>
+    <li>Matches:<span class="match"></span></li>
+  </ul>
+  <button class="reset">RESET GAME</button>
 </div>
+<!------------------
+* Module *
+-------------------->
 <div class="gameModule">
   <div class="modelBorder">
     <div class="gameContent">
