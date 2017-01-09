@@ -427,11 +427,13 @@ header li a:hover{
 
     #gameStats ul{
         margin:  2% auto;
+        text-align: center;
     }
 
     #gameStats li{
+        display: inline-block;
         font-size: 5vw;
-        padding:  1% 2%;
+        padding:  1% 5%;
     }
 
     #gameStats li span {
@@ -461,7 +463,7 @@ header li a:hover{
     }
 
     /********************
-    *  Game Stats
+    *  Game Intel
     ********************/
     #gameIntel{
         display: none;
