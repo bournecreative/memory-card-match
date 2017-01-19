@@ -1,18 +1,3 @@
-$(document).ready(function(){
-  buildCards();
-  cardClickHandler();
-  pauseMusicHandler();
-  musicToggleHandler();
-  gamesPlayed();
-  gameResetHandler();
-  moduleHandler();
-  closeHandler();
-  startGameHandler();
-  incrementAttempt();
-  guessAccuracy();
-  agentMatched();
-});
-
 var firstCard = null;
 var firstCardVal = null;
 var secondCard = null;
@@ -20,7 +5,9 @@ var secondCardVal = null;
 var totalGamesPlayed = null;
 var totalAttempts = null;
 var matches = null;
-
+var min = 0;
+var sec = 0;
+var timeSet;
 /**********************
  * Music for Game Play
  **********************/
@@ -157,7 +144,7 @@ function reveal(){
     $(firstCard).bind("click",showCard);
     $(secondCard).bind("click",showCard);
     $('.back').on('click',showCard);
-  },1700);
+  },1000);
 }
 
 //reset cards identified for match
@@ -179,6 +166,7 @@ function startGameHandler(){
 function startGame(){
   $('#gameShield').fadeOut();
   gamesPlayed();
+  timeSet = setInterval(gameTimer,1000);
 }
 
 /**********************
@@ -245,9 +233,13 @@ function gameReset(){
   $('.back').show();
   //Resets Card Values
   resetCardGuess();
+  clearTimer();
   //clear values for game states
   totalAttempts = null;
   matches = null;
+  min = 0;
+  sec = 0;
+  $('.timer').text(min +":"+("0" + (sec)));
   //running game display stats to show text of zeroed out stat
   incrementAttempt();
   agentMatched();
@@ -266,6 +258,7 @@ function determineWin(){
   if (matches >=9){
     winning();
     winMessage();
+    clearTimer();
   }
 }
 
@@ -290,6 +283,31 @@ function clearGameMessage(){
 }
 
 /**********************
+ * Game Time
+ **********************/
+
+function clearTimer(){
+  clearInterval(timeSet);
+}
+
+//Time Counter
+function gameTimer(){
+  if (sec < 9){
+    $('.timer').text(min +":"+("0" + (sec=sec+1)));
+  }else if (sec <= 58){
+    $('.timer').text(min +":"+(sec=sec+1));
+  }else{
+    sec = 0;
+    min++;
+    $('.timer').text(min +":"+("0" + (sec)));
+  }
+  
+  if (min >= 2){
+    clearTimer();
+  }
+}
+
+/**********************
  * Module Show / Hide Functionality
  **********************/
 function moduleHandler(){
@@ -308,3 +326,17 @@ function closeModel(){
   $('.gameModule').fadeOut();
 }
 
+$(document).ready(function(){
+  buildCards();
+  cardClickHandler();
+  pauseMusicHandler();
+  musicToggleHandler();
+  gamesPlayed();
+  gameResetHandler();
+  moduleHandler();
+  closeHandler();
+  startGameHandler();
+  incrementAttempt();
+  guessAccuracy();
+  agentMatched();
+});
