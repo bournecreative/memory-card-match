@@ -229,6 +229,7 @@ function gameResetHandler(){
 }
 
 function gameReset(){
+  clearMissionFailed();
   //Hides all cards
   $('.back').show();
   //Resets Card Values
@@ -304,7 +305,20 @@ function gameTimer(){
   
   if (min >= 2){
     clearTimer();
+    missonFailed();
   }
+}
+
+/**********************
+ * Mission Failed Defeat screen and clear screen
+ **********************/
+
+function missonFailed(){
+  $('#missonFailed').css('display','block');
+}
+
+function clearMissionFailed(){
+  $('#missonFailed').css('display','none');
 }
 
 /**********************
