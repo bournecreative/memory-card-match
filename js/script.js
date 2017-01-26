@@ -8,6 +8,7 @@ var matches = null;
 var min = 0;
 var sec = 0;
 var timeSet;
+var damage = 0;
 /**********************
  * Music for Game Play
  **********************/
@@ -100,7 +101,7 @@ function showCard () {
   var thisCard = this;
   $(thisCard).hide();
   $(thisCard).unbind("click",showCard);
-  console.log("back card is hidden to reveal face card");
+  // console.log("back card is hidden to reveal face card");
   markCard(thisCard);
 }
 
@@ -109,11 +110,11 @@ function markCard(card) {
   if (firstCard === null) {
     firstCard = $(card);
     firstCardVal = $(card).prev('.front').find('img').attr('src');
-    console.log("1st Card Val " + firstCardVal);
+    // console.log("1st Card Val " + firstCardVal);
   }else if(firstCard !== null && secondCard === null){
     secondCard = $(card);
     secondCardVal = $(card).prev('.front').find('img').attr('src');
-    console.log("2nd Card Val " + secondCardVal);
+    // console.log("2nd Card Val " + secondCardVal);
     $('.back').off('click',showCard);
     checkForMatch();
     incrementAttempt();
@@ -124,12 +125,11 @@ function markCard(card) {
 function checkForMatch(){
   if (firstCardVal === secondCardVal){
     agentMatched();
-    console.log("its a match - Point");
     resetCardGuess();
     $('.back').on('click',showCard);
   }else if (firstCardVal !== secondCardVal){
-    console.log("No Match");
     reveal();
+    addDamage();
   }
 }
 
@@ -138,8 +138,8 @@ function reveal(){
   setTimeout(function(){
     $(firstCard).show();
     $(secondCard).show();
-    console.log("face card is now hidden again");
-    console.log("face card is now hidden again");
+    // console.log("face card is now hidden again");
+    // console.log("face card is now hidden again");
     resetCardGuess();
     $(firstCard).bind("click",showCard);
     $(secondCard).bind("click",showCard);
@@ -240,6 +240,8 @@ function gameReset(){
   matches = null;
   min = 0;
   sec = 0;
+  damage = 0;
+  $('.progress').css('width', damage + "%");
   $('.timer').text(min +":"+("0" + (sec)));
   //running game display stats to show text of zeroed out stat
   incrementAttempt();
@@ -286,7 +288,6 @@ function clearGameMessage(){
 /**********************
  * Game Time
  **********************/
-
 function clearTimer(){
   clearInterval(timeSet);
 }
@@ -321,6 +322,19 @@ function clearMissionFailed(){
   $('#missonFailed').css('display','none');
 }
 
+/**********************
+ * When players misses a match, damage is inflicted.
+ **********************/
+function addDamage(){
+  if (damage < 100){
+    damage += 5;
+    $('.progress').css('width', damage + "%");
+  }else{
+    missonFailed();
+    clearTimer();
+  }
+}
+  
 /**********************
  * Module Show / Hide Functionality
  **********************/
