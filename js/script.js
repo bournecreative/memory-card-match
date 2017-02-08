@@ -9,6 +9,7 @@ var min = 0;
 var sec = 0;
 var timeSet;
 var damage = 0;
+
 /**********************
  * Music for Game Play
  **********************/
@@ -59,24 +60,32 @@ function musicToogle(){
 
 //dynamically builds a deck of cards 1-18 and randomizes card values
 function buildCards() {
-  
-  var cardNumbers = [0,1,2,3,4,5,6,7,8,0,1,2,3,4,5,6,7,8];
-  
-  var newCardOrder = shuffle(cardNumbers);
-  
-  for (var i=0; i<=newCardOrder.length-1; i++) {
+  //Build game board with cards
+  for (var i=0; i<=17; i++) {
     var cardContainer = $('<div>', {class: 'card'});
     var cardFront = $('<div>',{class: 'front'});
-    var cardImg = $('<img>').attr('src', 'img/card'+newCardOrder[i]+'.jpg');
+    var cardImg = $('<img>');
     var cardBack = $('<div>',{class: 'back'});
+    
     $("#gameBoard").append(cardContainer);
     $(cardContainer).append(cardFront);
     $(cardFront).append(cardImg);
     $(cardContainer).append(cardBack);
   }
+  assignFaceCard();
 }
 
-//shuffles cards
+//Shuffles images assigned to card
+function assignFaceCard(){
+  var cardNumbers = [0,1,2,3,4,5,6,7,8,0,1,2,3,4,5,6,7,8];
+  var newCardOrder = shuffle(cardNumbers);
+  var cards = $('.front img');
+  for (var i=0, j=0; i<cards.length, j<newCardOrder.length; i++,j++){
+    $(cards[i]).attr('src', 'img/card'+newCardOrder[j]+'.jpg');
+  }
+}
+
+//shuffles array
 function shuffle(arr) {
   var i, j, temp;
   for (i=arr.length-1; i>0; i--){
@@ -156,20 +165,6 @@ function resetCardGuess(){
 }
 
 /**********************
- * Module Show / Hide Functionality
- **********************/
-
-function startGameHandler(){
-  $('.startGame').on('click', startGame)
-}
-
-function startGame(){
-  $('#gameShield').fadeOut();
-  gamesPlayed();
-  timeSet = setInterval(gameTimer,1000);
-}
-
-/**********************
  * Games Played Logic
  **********************/
 function gamesPlayed(){
@@ -210,6 +205,18 @@ function agentMatched(){
 }
 
 /**********************
+ * Determine Win
+ **********************/
+
+function determineWin(){
+  if (matches >=9){
+    winning();
+    winMessage();
+    clearTimer();
+  }
+}
+
+/**********************
  * Accuracy
  **********************/
 function guessAccuracy(){
@@ -224,53 +231,88 @@ function guessAccuracy(){
  * Reset Game Logic
  **********************/
 
+//Master Reset
 function gameResetHandler(){
   $('.reset').on('click', gameReset);
 }
 
 function gameReset(){
+  //clears mission failed screen
   clearMissionFailed();
-  //Hides all cards
-  $('.back').show();
-  //Resets Card Values
+  //clears win message screen
+  clearWinMessage();
+  //resets current card guess values
   resetCardGuess();
+  //flips all card faces over
+  hideAllCards();
+  //stop timer
   clearTimer();
-  //clear values for game states
-  totalAttempts = null;
-  matches = null;
+  //clear game stat values
+  resetTextValues();
+  //game shield is set up for next game
+  boardSet();
+  //shuffles cards for next game
+  assignFaceCard();
+}
+
+//hide all cards
+function hideAllCards(){
+  $('.back').show();
+}
+
+//resets values and display for timer
+function timerValueReset(){
   min = 0;
   sec = 0;
+  $('.timer').text(min +":"+("0" + (sec)));
+}
+
+//resets values and display for damage
+function damageValueReset(){
   damage = 0;
   $('.progress').css('width', damage + "%");
-  $('.timer').text(min +":"+("0" + (sec)));
-  //running game display stats to show text of zeroed out stat
-  incrementAttempt();
-  agentMatched();
-  guessAccuracy();
-  //clears win message if visible
-  $('.gameMessage').css('display', 'none');
-  //start screen
+}
+
+//resets values and display for damage
+function boardSet(){
   $('#gameShield').fadeIn();
 }
 
-/**********************
- * Determine Win
- **********************/
-
-function determineWin(){
-  if (matches >=9){
-    winning();
-    winMessage();
-    clearTimer();
-  }
+//reset game stats
+function resetTextValues(){
+  totalAttempts = null;
+  matches = null;
+  incrementAttempt();
+  agentMatched();
+  guessAccuracy();
+  timerValueReset();
+  damageValueReset();
 }
 
 /**********************
- * Display Winning Message
+ * Win Message
  **********************/
+//show message
 function winMessage(){
   $('.gameMessage').css('display', 'block');
   clearHandler();
+}
+
+//hide message
+function clearWinMessage(){
+  $('.gameMessage').css('display', 'none');
+}
+
+/**********************
+ * Defeat Message
+ **********************/
+//show message
+function missonFailed(){
+  $('#missonFailed').css('display','block');
+}
+//hide message
+function clearMissionFailed(){
+  $('#missonFailed').css('display','none');
 }
 
 /**********************
@@ -288,6 +330,8 @@ function clearGameMessage(){
 /**********************
  * Game Time
  **********************/
+
+//clear timer
 function clearTimer(){
   clearInterval(timeSet);
 }
@@ -311,19 +355,7 @@ function gameTimer(){
 }
 
 /**********************
- * Mission Failed Defeat screen and clear screen
- **********************/
-
-function missonFailed(){
-  $('#missonFailed').css('display','block');
-}
-
-function clearMissionFailed(){
-  $('#missonFailed').css('display','none');
-}
-
-/**********************
- * When players misses a match, damage is inflicted.
+ * DAMAGE - when player misses a match, damage is inflicted
  **********************/
 function addDamage(){
   if (damage < 100){
@@ -352,6 +384,20 @@ function closeHandler(){
 
 function closeModel(){
   $('.gameModule').fadeOut();
+}
+
+/**********************
+ * Module Show / Hide Functionality
+ **********************/
+
+function startGameHandler(){
+  $('.startGame').on('click', startGame)
+}
+
+function startGame(){
+  $('#gameShield').fadeOut();
+  gamesPlayed();
+  timeSet = setInterval(gameTimer,1000);
 }
 
 $(document).ready(function(){
